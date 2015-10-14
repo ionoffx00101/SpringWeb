@@ -34,6 +34,7 @@ public class HelloWebSocketHandler extends TextWebSocketHandler {
          
         super.afterConnectionEstablished(session);
         sessionMap.put(Integer.toString(num++), session);
+        
         System.out.println("클라이언트 접속됨");
     }
  

@@ -46,5 +46,9 @@ function jqueryOk() {
 <button type="button">로그인</button>
 </form>
 <br>로그인 용 아이디 디폴트 입력 되어 있음
+<br>
+7839 KING
+<br>
+7902 FORD
 </body>
 </html>

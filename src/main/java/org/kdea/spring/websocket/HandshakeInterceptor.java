@@ -26,7 +26,7 @@ public class HandshakeInterceptor extends HttpSessionHandshakeInterceptor{
             ServerHttpResponse response, WebSocketHandler wsHandler,
             Map<String, Object> attributes) throws Exception {
  
-        System.out.println("Before Handshake");
+      // System.out.println("Before Handshake");
          
        
         
@@ -39,15 +39,16 @@ public class HandshakeInterceptor extends HttpSessionHandshakeInterceptor{
         String usrId = req.getParameter("id");
         attributes.put("usrId", usrId);
         
+        req.getSession().setAttribute("myId", usrId);
         
-        
-        Object objList = req.getServletContext()
-				.getAttribute("usrList");
+        Object objList = req.getServletContext().getAttribute("usrList");
 		if (objList == null) {
 			List<String> usrList = new ArrayList<>();
 			req.getServletContext().setAttribute("usrList", usrList);
+			
 			objList = usrList;
 		}
+		
 		List<String> usrList = (List<String>) objList;
 		usrList.add(usrId);
 		
@@ -59,7 +60,7 @@ public class HandshakeInterceptor extends HttpSessionHandshakeInterceptor{
     public void afterHandshake(ServerHttpRequest request,
             ServerHttpResponse response, WebSocketHandler wsHandler,
             Exception ex) {
-        System.out.println("After Handshake");
+       // System.out.println("After Handshake");
  
         super.afterHandshake(request, response, wsHandler, ex);
     }

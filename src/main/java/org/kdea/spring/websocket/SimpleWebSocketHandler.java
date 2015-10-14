@@ -11,7 +11,8 @@ import org.springframework.web.socket.handler.TextWebSocketHandler;
 
 public class SimpleWebSocketHandler extends TextWebSocketHandler {
 	private static Map<String, WebSocketSession> sessionMap = new HashMap<>();
-
+	private static List<String> list = new ArrayList<>();
+	
 	// 웹소켓 서버측에 텍스트 메시지가 접수되면 호출되는 메소드
 	@Override
 	public void handleMessage(WebSocketSession session,
@@ -37,8 +38,8 @@ public class SimpleWebSocketHandler extends TextWebSocketHandler {
 					Iterator<String> keys = sessionMap.keySet().iterator();
 					while (keys.hasNext()) {
 						String key = keys.next();
-						sessionMap.get(key).sendMessage(
-								new TextMessage(payloadMessage));
+	
+						sessionMap.get(key).sendMessage(new TextMessage(payloadMessage));
 					}
 				} else {
 					Map<String, Object> map = session.getAttributes();
@@ -58,6 +59,7 @@ public class SimpleWebSocketHandler extends TextWebSocketHandler {
 
 		Map<String, Object> map = session.getAttributes();
 		String usrId = (String) map.get("usrId");
+		
 		System.out.println("전송자 아이디:" + usrId);
 	}
 
@@ -73,14 +75,19 @@ public class SimpleWebSocketHandler extends TextWebSocketHandler {
 		String id = (String) map.get("usrId");
 
 		sessionMap.put(id, session);
-
-		/*
-		 * Iterator<String> keys = sessionMap.keySet().iterator(); while
-		 * (keys.hasNext()) { String key = keys.next();
-		 * 
-		 * sessionMap.get(key).sendMessage(new TextMessage("{'order':'list'}"));
-		 * }
-		 */
+		
+		Iterator<String> keys = sessionMap.keySet().iterator(); 
+		
+		list.add(id);	
+		
+		while(keys.hasNext()) { 
+			String key = keys.next();
+			sessionMap.get(key).sendMessage(new TextMessage("{'order':'usrappend','list':"+list+"}"));
+			
+			System.out.println("클라이언트 접속자 추가 "+"{'order':'usrappend','usrId':"+id+"}"+" 보냄");
+		 }
+		
+		 
 	}
 
 	// 클라이언트가 접속을 종료하면 호출되는 메소드
@@ -93,14 +100,17 @@ public class SimpleWebSocketHandler extends TextWebSocketHandler {
 		String id = (String) map.get("usrId");
 
 		sessionMap.remove(id);
+		list.remove(id);
+		
+		
 		Iterator<String> keys = sessionMap.keySet().iterator();
 
-		/*
-		 * while (keys.hasNext()) { String key = keys.next();
-		 * 
-		 * sessionMap.get(key).sendMessage(new
-		 * TextMessage("{'order':'list' }")); }
-		 */
+	
+		while (keys.hasNext()) { String key = keys.next();
+		 
+		sessionMap.get(key).sendMessage(new TextMessage("{'order':'usrappend','list':"+list+"}"));
+		}
+		
 
 		System.out.println("클라이언트 접속해제");
 	}

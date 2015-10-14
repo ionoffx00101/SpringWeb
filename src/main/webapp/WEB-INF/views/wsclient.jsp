@@ -1,11 +1,7 @@
 <%@page import="java.util.List"%>
 <%@ page contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%
-	Object list= application.getAttribute("usrList");
-    List<String> usrList= null;
-    if(list!=null) usrList=(List<String>)list;
-%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -32,7 +28,8 @@ canvas {
 	var y3 = 350;
 	var x4 = 0;
 	var y4 = 0;
-
+	var ws;
+	
 	$(function() {
 		var $canvas = $('canvas').eq(0);
 		ctx = $canvas[0].getContext("2d");
@@ -46,8 +43,86 @@ canvas {
 		ctx.arc(x3, y3, 20, 0, Math.PI * 2, true);
 		ctx.fill();
 
-		var ws = new WebSocket(
-				"ws://192.168.8.28:8888/SpringWeb/simpleChat?id=${id}");
+		ws = new WebSocket(
+				"ws://192.168.8.55:8500/SpringWeb/simpleChat?id=${id}");
+		
+		
+
+		ws.onopen = function() {
+			$('#chatStatus').text('Info: connection opened.');
+			 
+		        $('input[name=chatInput]').on('keydown', function(evt){
+		            if(evt.keyCode==13){
+		                var msg = $('input[name=chatInput]').val();
+		                var jsonmsg={order :"msg",sender:"${myId}",msg:msg ,receiver:$('select[name=receiver]').val()}
+		                ws.send(JSON.stringify(jsonmsg));
+		                $('input[name=chatInput]').val('');
+		            }
+		        });
+		        mouse();
+		};
+		ws.onmessage = function(event) {
+			var ob = eval("(" + event.data + ")");
+
+			if (ob.order == 'draw') {
+				x1 = ob.x;
+				y1 = ob.y;
+
+				if (x1 < x3) {
+					x4 = x3 - x1;
+				} else if (x1 > x3) {
+					x4 = x1 - x3;
+				}
+
+				if (y1 < y3) {
+					y4 = y3 - y1;
+				} else if (y1 > y3) {
+					y4 = y1 - y3;
+				}
+
+				if ((x4 * x4) + (y4 * y4) <= (40 * 40)) {
+					clearInterval(timer);
+				}
+				Draw();
+			}
+			if (ob.order == 'usrappend') {
+				//alert("사용자 추가됨"+ob.list);
+				// order에 usrappend 가 전달되었을때 선택박스스에 추가가 추가됨
+				$('select[name=receiver]').empty();
+				$("select[name='receiver']").append("<option>default</option>");
+				
+				var list = ob.list;
+			
+				for(i=0;i<list.length;i++){
+				$("select[name='receiver']").append('<option>'+list[i]+'</option>');
+				}
+			}
+			if (ob.order == 'msg') {
+				// order에 usrappend 가 전달되었을때 선택박스스에 추가가 추가됨
+				 $('textarea').eq(0).prepend(ob.sender+" > "+ob.receiver+" : "+ob.msg+'\n');/* append */
+			}
+			
+		};
+		ws.onclose = function(event) {
+			$('#chatStatus').text('Info: connection closed.');
+		};
+	});
+	function Draw() {
+
+		ctx.clearRect(0, 0, 500, 500);
+		ctx.fillStyle = "black";
+		ctx.beginPath();
+		ctx.arc(x1, y1, 20, 0, Math.PI * 2, true);
+		ctx.fill();
+
+		ctx.beginPath();
+		ctx.fillStyle = "red";
+		ctx.arc(x3, y3, 20, 0, Math.PI * 2, true);
+		ctx.fill();
+
+	}
+	function mouse(){
+		
 		$('#canvas').mousemove(
 				function(evt) {
 					if (ballclick) {
@@ -74,8 +149,7 @@ canvas {
 
 				});
 
-		$('#canvas')
-				.click(
+		$('#canvas').click(
 						function(evt) {
 							if (!ballclick) {
 
@@ -156,75 +230,22 @@ canvas {
 								}, 10);
 							}
 						});
-
-		ws.onopen = function() {
-			$('#chatStatus').text('Info: connection opened.');
-		};
-		ws.onmessage = function(event) {
-			var ob = eval("(" + event.data + ")");
-
-			if (ob.order == 'draw') {
-				x1 = ob.x;
-				y1 = ob.y;
-
-				if (x1 < x3) {
-					x4 = x3 - x1;
-				} else if (x1 > x3) {
-					x4 = x1 - x3;
-				}
-
-				if (y1 < y3) {
-					y4 = y3 - y1;
-				} else if (y1 > y3) {
-					y4 = y1 - y3;
-				}
-
-				if ((x4 * x4) + (y4 * y4) <= (40 * 40)) {
-					clearInterval(timer);
-				}
-				Draw();
 			}
-			if (ob.order == 'list') {
-				$('select[name=receiver]').empty();
-			}
-			
-		};
-		ws.onclose = function(event) {
-			$('#chatStatus').text('Info: connection closed.');
-		};
-	});
-	function Draw() {
-
-		ctx.clearRect(0, 0, 500, 500);
-		ctx.fillStyle = "black";
-		ctx.beginPath();
-		ctx.arc(x1, y1, 20, 0, Math.PI * 2, true);
-		ctx.fill();
-
-		ctx.beginPath();
-		ctx.fillStyle = "red";
-		ctx.arc(x3, y3, 20, 0, Math.PI * 2, true);
-		ctx.fill();
-
-	}
 </script>
 </head>
 <body>
-	<p>
-		<canvas id="canvas" width="500px" height="500"></canvas>
-	<div id='chatStatus'></div>
+<div id='chatStatus'></div>
 	<p>
 		<select name="receiver">
-			<option>default</option>
-			<%
-				if (usrList != null) {
-					for (int i = 0; i < usrList.size(); i++) {
-			%>
-			<option><%=usrList.get(i)%></option>
-			<%
-				}
-				}
-			%>
 		</select>
+		
+		<p>
+<div id='chatStatus'></div>
+<textarea name="chatMsg" rows="5" cols="40"></textarea>
+<p>
+메시지 입력 : <input type="text" name="chatInput">
+	<p>
+		<canvas id="canvas" width="500px" height="500"></canvas>
+	
 </body>
 </html>
