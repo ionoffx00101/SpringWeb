@@ -39,7 +39,8 @@ public class HandshakeInterceptor extends HttpSessionHandshakeInterceptor{
         String usrId = req.getParameter("id");
         attributes.put("usrId", usrId);
         
-        req.getSession().setAttribute("myId", usrId);
+        req.setAttribute("myId", usrId);
+        //req.getSession().setAttribute("myId", usrId); ¤²¹Ù·Î ¾È³ª¿È
         
         Object objList = req.getServletContext().getAttribute("usrList");
 		if (objList == null) {

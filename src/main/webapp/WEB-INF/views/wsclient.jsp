@@ -54,7 +54,8 @@ canvas {
 		        $('input[name=chatInput]').on('keydown', function(evt){
 		            if(evt.keyCode==13){
 		                var msg = $('input[name=chatInput]').val();
-		                var jsonmsg={order :"msg",sender:"${myId}",msg:msg ,receiver:$('select[name=receiver]').val()}
+		                var jsonmsg={order :"msg",sender:"${id}",msg:msg ,receiver:$('select[name=receiver]').val()}
+		             /*    var jsonmsg={order :"msg",sender:"${myId}",msg:msg ,receiver:$('select[name=receiver]').val()} */
 		                ws.send(JSON.stringify(jsonmsg));
 		                $('input[name=chatInput]').val('');
 		            }
