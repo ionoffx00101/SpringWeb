@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>eventInfo</title>
+<title>eventInput</title>
 <style type="text/css">
 body {
 	text-align: center;
@@ -27,58 +27,41 @@ th {
 	border: 1px solid black;
 }
 </style>
-<script type="text/javascript" src="<c:url value="/resources/jquery-2.1.4.min.js"/>"></script>
-<script type="text/javascript">
-$(function() {
-	$('button[name=btn_delete]').on('click', function(evt){
-		
-          if(confirm("정말삭제하시겠습니까")){
-        	  location.href="eventDelete.do?eno=${selectevt.eno}";
-          }
-            
-    });
-});
-
-</script>
 </head>
 <body>
-<h2>상세정보페이지</h2>
-	<div>
+<h2>행사 수정</h2>
+<div>
+		<form method="post" action="eventEdit.do">
 			<table>
 				<tr>
 					<td>행사번호 :</td>
-					<td>${selectevt.eno}</td>
+					<td><input type="text" name="eno" value="${selectevt.eno}" readonly="readonly"></td>
 				</tr>
 				<tr>
 					<td>행사주관단체 :</td>
-					<td>${selectevt.eorg}</td>
+					<td><input type="text" name="eorg" value="${selectevt.eorg}"></td>
 				</tr>
 				<tr>
 					<td>행사일 :</td>
-					<td>${selectevt.edate}</td>
+					<td><input type="date" name="edate" value="${selectevt.edate}"></td>
 				</tr>
 				<tr>
 					<td>행사장소 :</td>
-					<td>${selectevt.eplace}</td>
+					<td><input type="text" name="eplace" value="${selectevt.eplace}"></td>
 				</tr>
 				<tr>
 				<tr>
 					<td>연락처 :</td>
-					<td>${selectevt.phone}</td>
+					<td><input type="text" name="phone" value="${selectevt.phone}"></td>
 				</tr>
 				<tr>
-
-					<td colspan="2">
-					<a href="eventEdit.do?eno=${selectevt.eno}"><input type="submit" value="행사수정" /></a> 
-					<button type="button" name="btn_delete" value="행사삭제">행사삭제</button>
-					</td>
-					
-				</tr>
+					<td colspan="2"><input type="submit" value="수정내역 저장" /></td>
+				</tr> 
 				<tr>
 					<td colspan="2"><a href="eventList">행사전체리스트 보기</a></td>
 				</tr>
 			</table>
-
+		</form>
 	</div>
 </body>
 </html>

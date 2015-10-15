@@ -56,4 +56,52 @@ public class EventController {
     	
         return "event/eventInfo"; 
     }  
+    
+    @RequestMapping(value = "eventEdit",  method = RequestMethod.GET)  
+    public String editEvtlnk(@ModelAttribute Event evt,@RequestParam("eno") int eno, Model model) {
+
+    	Event selectevt = evtService.getEvt(eno);
+    	model.addAttribute("selectevt",selectevt);
+    	
+        return "event/eventEdit"; 
+    }  
+
+    @RequestMapping(value = "eventEdit", method = RequestMethod.POST)  
+    public String editEvt(@ModelAttribute Event evt, Model model) {
+    	int x = evt.getEno();
+    	boolean check = evtService.editEvt(evt);
+        if(check) {
+        /*	String str = "event/eventInfo?eno="+x+"";
+        	
+        	return str;  */
+        	Event selectevt = evtService.getEvt(x);
+        	model.addAttribute("selectevt",selectevt);
+        	
+            return "event/eventInfo"; 
+          // return "event/eventInfo";    // 고쳐라 안되면 제이슨으로 보내고 받고라도 해라..
+        }else{
+        	 return "event/eventEdit"; 
+        }
+    
+    } 
+    
+    @RequestMapping(value = "eventDelete", method = RequestMethod.GET)  
+    public String deleteEvt(@ModelAttribute Event evt,@RequestParam("eno") int eno) {
+    	
+    	boolean check = evtService.deleteEvt(eno);
+        if(check) {
+        	return "redirect:/event/eventList";  
+           
+        }else{
+        	 return "event/eventInfo"; 
+        }
+    
+    }  
+    
+    @RequestMapping(value = "eventSearch", method = RequestMethod.GET)  
+    public String searchEvt(@ModelAttribute Event evt,@RequestParam("word") String word,@RequestParam("cate") String cate,Model model) {
+    	
+    	model.addAttribute("list",evtService.getSearchEvt(word,cate));
+    	return "event/eventList"; 
+    }  
 }

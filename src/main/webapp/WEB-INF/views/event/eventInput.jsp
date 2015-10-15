@@ -29,6 +29,7 @@ th {
 </style>
 </head>
 <body>
+<h2>행사추가</h2>
 <div>
 		<form method="post" action="eventInput.do">
 			<table>

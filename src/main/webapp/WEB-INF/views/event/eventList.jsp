@@ -30,9 +30,33 @@ th {
 	border: 1px solid black;
 }
 </style>
+<script type="text/javascript" src="<c:url value="/resources/jquery-2.1.4.min.js"/>"></script>
+<script type="text/javascript">
+$(function() {
+	$('button[name=btn_search]').on('click', function(evt){
+		
+            var word = $('input[name=searchword]').val();
+            var cate = $('select[name=category]').val();
+          if(word!=null){
+        	  
+        	  location.href='eventSearch.do?word='+word+'&cate='+cate+'';
+          }
+            
+    });
+});
+
+</script>
 </head>
 <body>
-주관단체명을 누르면 해당 행사의 상세페이지로 이동합니다.<br><br><br>
+<h2><a href="eventList">행사리스트</a></h2><br>
+주관단체명을 누르면 해당 행사의 상세페이지로 이동합니다.<br><br>
+<a href="eventInput.do"><button type="button">이벤트추가</button></a><br><br>
+<select name="category">
+<option>행사주관단체</option>
+<option>행사날짜</option>
+<option>행사장소</option>
+</select> <input type="text" name="searchword"> <button type="button" name="btn_search"> 검색</button>
+<br><br>
 <table>
 <tr><td>행사번호</td>
 <td>행사날짜</td>
@@ -46,8 +70,9 @@ th {
    <td>${evt.eplace}</td>
     <td>${evt.phone}</td></tr>
 </c:forEach>
+
 </table>
 <p>
-<a href="eventInput.do">이벤트추가</a>
+
 </body>
 </html>
