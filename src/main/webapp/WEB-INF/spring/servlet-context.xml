@@ -19,6 +19,7 @@
 	<context:component-scan base-package="org.kdea.spring.controller" />
 	<context:component-scan base-package="org.kdea.spring.service" />
 	<context:component-scan base-package="org.kdea.spring.websocket" />
+	<context:component-scan base-package="org.kdea.spring.springdb" />
 
 	<!-- Handles HTTP GET requests for /resources/** by efficiently serving 
 		up static resources in the ${webappRoot}/resources directory -->
@@ -55,12 +56,21 @@
 		</beans:property>
 	</beans:bean>
 
-	<beans:bean id="simpleChatHandler" class="org.kdea.spring.websocket.SimpleWebSocketHandler" />
+	<beans:bean id="simpleChatHandler"
+		class="org.kdea.spring.websocket.SimpleWebSocketHandler" />
 	<websocket:handlers>
 		<websocket:mapping path="/simpleChat" handler="simpleChatHandler" />
 		<websocket:handshake-interceptors>
 			<beans:bean class="org.kdea.spring.websocket.HandshakeInterceptor" />
 		</websocket:handshake-interceptors>
 	</websocket:handlers>
-
+	
+	<!-- spring jdbc  -->
+	<beans:bean id="dataSource" class="oracle.jdbc.pool.OracleDataSource">
+		<beans:property name="dataSourceName" value="ds" />
+		<beans:property name="URL"
+			value="jdbc:oracle:thin:@192.168.8.55:1521:xe" />
+		<beans:property name="user" value="scott" />
+		<beans:property name="password" value="tiger" />
+	</beans:bean>
 </beans:beans>

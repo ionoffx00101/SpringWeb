@@ -1,4 +1,4 @@
-package org.kdea.spring.service;
+package back;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -8,6 +8,7 @@ import org.kdea.spring.controller.EmpVO;
 import org.springframework.beans.factory.annotation.Autowired;
 
 public class EmpDAO extends AbstractDAO {
+	
 	
 	public boolean log(int num, String name) {
 		conn = getConn();
