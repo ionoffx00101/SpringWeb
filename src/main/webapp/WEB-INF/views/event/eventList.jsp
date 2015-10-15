@@ -33,16 +33,33 @@ th {
 <script type="text/javascript" src="<c:url value="/resources/jquery-2.1.4.min.js"/>"></script>
 <script type="text/javascript">
 $(function() {
+	var cate;
 	$('button[name=btn_search]').on('click', function(evt){
 		
             var word = $('input[name=searchword]').val();
-            var cate = $('select[name=category]').val();
+            cate = $('select[name=category]').val();
           if(word!=null){
-        	  
         	  location.href='eventSearch.do?word='+word+'&cate='+cate+'';
-          }
-            
+          }      
     });
+  /*   if(cate == '행사날짜'){
+    	$('input[name=searchword]').CSS("type","date");
+    	
+    } */
+    $('select[name=category]').change(function(){
+    	cate=$('select[name=category]').val();
+    	if(cate == '행사날짜'){
+    	$('input[name=searchword]').attr("type","date");
+    	}
+    	else{
+        	$('input[name=searchword]').attr("type","text");
+        }
+    });
+     /*  if(word!=null){
+    	  
+    	  location.href='eventSearch.do?word='+word+'&cate='+cate+'';
+      }       */
+
 });
 
 </script>
@@ -55,7 +72,7 @@ $(function() {
 <option>행사주관단체</option>
 <option>행사날짜</option>
 <option>행사장소</option>
-</select> <input type="text" name="searchword"> <button type="button" name="btn_search"> 검색</button>
+</select> <input type="text" name="searchword"><input type="date" name="searchworddate" hidden="hidden"> <button type="button" name="btn_search"> 검색</button>
 <br><br>
 <table>
 <tr><td>행사번호</td>

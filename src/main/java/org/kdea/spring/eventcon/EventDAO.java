@@ -85,7 +85,9 @@ public class EventDAO {
 
 	public List<Event> SearchEvtdate(String word) {
 		List<Event> list = new ArrayList<Event>();  
-        String sql = "select * from event where EDATE like '%"+word+"%' ORDER BY ENO";  
+		/*String sql = "select * from event where EDATE like '%"+word+"%' ORDER BY ENO";  */ 
+		String sql = "SELECT * FROM event WHERE TO_CHAR(edate,'YYYY-MM-DD') = '"+word+"'";
+        
         JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);  
         list = jdbcTemplate.query(sql, new EventRowMapper());  
         return list; 
