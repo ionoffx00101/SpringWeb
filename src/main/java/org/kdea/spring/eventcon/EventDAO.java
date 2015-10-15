@@ -1,9 +1,7 @@
 package org.kdea.spring.eventcon;
 
 import java.util.*;
-
 import javax.sql.DataSource;
- 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
@@ -40,5 +38,12 @@ public class EventDAO {
         
         return rows>0 ? true : false;
     }
- 
+    
+    public Event getEvp(int eno) {  
+        String sql = "select * from event where eno=?";  
+        JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource);  
+        Event evt = jdbcTemplate.queryForObject(sql, new Object[]{eno}, new EventRowMapper());  
+        return evt;  
+    }  
+    
 }

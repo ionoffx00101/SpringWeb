@@ -29,12 +29,79 @@ th {
 </style>
 </head>
 <body>
-<div>
+	<div>
+			<table>
+				<tr>
+					<td>행사번호 :</td>
+					<td>${selectevt.eno}</td>
+				</tr>
+				<tr>
+					<td>행사주관단체 :</td>
+					<td>${selectevt.eorg}</td>
+				</tr>
+				<tr>
+					<td>행사일 :</td>
+					<td>${selectevt.edate}</td>
+				</tr>
+				<tr>
+					<td>행사장소 :</td>
+					<td>${selectevt.eplace}</td>
+				</tr>
+				<tr>
+				<tr>
+					<td>연락처 :</td>
+					<td>${selectevt.phone}</td>
+				</tr>
+			<!-- 	<tr>
+					<td></td>
+					<td><input type="submit" value="행사저장" /></td>
+				</tr> -->
+				<tr>
+					<td colspan="2"><a href="eventList">행사전체리스트 보기</a></td>
+				</tr>
+			</table>
+
+	</div>
+<%-- 	<div>
+		<form method="post">
+			<table>
+				<tr>
+					<td>행사번호 :</td>
+					<td><input type="text" name="eorg" value="${selectevt.eno}"></td>
+				</tr>
+				<tr>
+					<td>행사주관단체 :</td>
+					<td><input type="text" name="eorg" value="${selectevt.eorg}"></td>
+				</tr>
+				<tr>
+					<td>행사일 :</td>
+					<td><input type="date" name="edate" value="${selectevt.edate}"></td>
+				</tr>
+				<tr>
+					<td>행사장소 :</td>
+					<td><input type="text" name="eplace" value="${selectevt.eplace}"></td>
+				</tr>
+				<tr>
+				<tr>
+					<td>연락처 :</td>
+					<td><input type="text" name="phone" value="${selectevt.phone}"></td>
+				</tr>
+			<!-- 	<tr>
+					<td></td>
+					<td><input type="submit" value="행사저장" /></td>
+				</tr> -->
+				<tr>
+					<td colspan="2"><a href="eventList">행사전체리스트 보기</a></td>
+				</tr>
+			</table>
+		</form>
+	</div> --%>
+	<%-- <div>
 		<form method="post" action="eventInput.do">
 			<table>
 				<tr>
 					<td>행사주관단체 :</td>
-					<td><input type="text" name="eorg" required="required"></td>
+					<td><input type="text" name="eorg" value="${selectevt.erg}"></td>
 				</tr>
 				<tr>
 					<td>행사일 :</td>
@@ -58,37 +125,6 @@ th {
 				</tr>
 			</table>
 		</form>
-	</div>
-	<%-- <div>
-		<form:form method="post" action="eventInput.do" modelAttribute="event">
-			<table>
-				<tr>
-					<td>행사주관단체 :</td>
-					<td><form:input path="eorg" /></td>
-				</tr>
-				<tr>
-					<td>행사일 :</td>
-					<td><form:input path="edate" /> </td>
-				</tr>
-				<tr>
-					<td>행사장소 :</td>
-					<td><form:input path="eplace" /></td>
-				</tr>
-				<tr>
-				<tr>
-					<td>연락처 :</td>
-					<td><form:input path="phone" /></td>
-				</tr>
-				<tr>
-					<td></td>
-					<td><input type="submit" value="행사저장" /></td>
-				</tr>
-				<tr>
-					<td colspan="2"><a href="eventList">행사전체리스트 보기</a></td>
-				</tr>
-			</table>
-		</form:form>
 	</div> --%>
-
 </body>
 </html>

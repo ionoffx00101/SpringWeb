@@ -15,9 +15,9 @@ public class EventService {
         return evtDao.getEvtList();
     }
      
-/*    public Event getEmp(int empno) {
-        return evtDao.getEmp(empno);
-    }*/
+    public Event getEvt(int eno) {
+        return evtDao.getEvp(eno);
+    }
      
     public boolean insertEvt(Event evt) {
         return evtDao.insertEvt(evt);

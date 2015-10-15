@@ -3,6 +3,7 @@ package org.kdea.spring.eventcon;
 import java.util.Locale;
 
 import javax.servlet.http.HttpSession;
+import javax.websocket.Session;
 
 import org.kdea.spring.controller.LoginCommand;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -47,4 +48,12 @@ public class EventController {
         }
     }  
     
+    @RequestMapping(value = "eventInfo",  method = RequestMethod.GET)  
+    public String infoEvtlnk(@ModelAttribute Event evt,@RequestParam("eno") int eno, Model model) {
+
+    	Event selectevt = evtService.getEvt(eno);
+    	model.addAttribute("selectevt",selectevt);
+    	
+        return "event/eventInfo"; 
+    }  
 }
