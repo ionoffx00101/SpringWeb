@@ -59,8 +59,7 @@ public class EmailController {
         return "email/login";
     }
     @RequestMapping(value = "login", method = RequestMethod.POST) 
-    public String login(@RequestParam("id") String id,@RequestParam("email") String email, HttpServletRequest request)  {
-    	request.getSession().setAttribute("reid", id);
+    public String login(@RequestParam("email") String email, HttpServletRequest request)  {
     	request.getSession().setAttribute("reemail",email);
 
     	return "redirect:/email/send";  

@@ -1,5 +1,6 @@
-package org.kdea.email;
+package org.kdea.spring.register;
 
+import java.util.List;
 
 import javax.mail.internet.InternetAddress; 
 import javax.mail.internet.MimeMessage;
@@ -9,12 +10,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
 
-@Service("emailService")
-public class EmailService {
+@Service("registerService")
+public class RegisterService {
      
     @Autowired
     protected JavaMailSender  mailSender;
-
+    
+    @Autowired
+    private RegisterDAO dao;
+    
     public boolean sendMail(EmailVO email) throws Exception {
         try{
 	        MimeMessage msg = mailSender.createMimeMessage();
@@ -33,4 +37,14 @@ public class EmailService {
         }
         return false;
     }
+
+	public boolean addmembersvc(MemberVO vo) {
+
+		return dao.addmemberdao(vo);
+	}
+
+	public List<MemberVO> getallList() {
+		
+		return dao.getallListdao();
+	}
 }
