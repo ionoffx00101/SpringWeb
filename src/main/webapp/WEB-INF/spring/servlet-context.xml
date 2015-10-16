@@ -21,6 +21,8 @@
 	<context:component-scan base-package="org.kdea.spring.websocket" />
 	<context:component-scan base-package="org.kdea.spring.springdb" />
 	<context:component-scan base-package="org.kdea.spring.eventcon" />
+	<context:component-scan base-package="org.kdea.upload" />
+	<context:component-scan base-package="org.kdea.email" />
 	
 	<!-- Handles HTTP GET requests for /resources/** by efficiently serving 
 		up static resources in the ${webappRoot}/resources directory -->
@@ -74,4 +76,32 @@
 		<beans:property name="user" value="scott" />
 		<beans:property name="password" value="tiger" />
 	</beans:bean>
+	
+	<!-- 파일업로드 관련 -->
+	<beans:bean id="multipartResolver"  
+  		class="org.springframework.web.multipart.commons.CommonsMultipartResolver" />
+  		
+  		<!-- 메일관련  : 이것은 서블릿 설정파일에 빈으로 등록된 EmailService 클래스는 콘트롤러에 인젝션하기 위한 것이다-->
+  		<beans:bean id="mailSender" class ="org.springframework.mail.javamail.JavaMailSenderImpl" >
+	    <beans:property name="host" value="smtp.gmail.com" />
+	    <beans:property name="port" value="25" />
+	    <beans:property name="username" value="anes2354@gmail.com" />
+	    <beans:property name="password" value="tehon6275!" />
+	    <!--
+	    <beans:property name="username" value="gmail_id@gmail.com" />
+	    <beans:property name="password" value="gmail_password" />
+	      -->
+	    <beans:property name="defaultEncoding" value="utf-8"/>
+	    <beans:property name="javaMailProperties">
+	    <beans:props>
+	        <beans:prop key="mail.smtp.starttls.enable">true</beans:prop>
+	        <beans:prop key="mail.transport.protocol">smtp</beans:prop>
+			<beans:prop key="mail.smtp.auth">true</beans:prop>
+			<beans:prop key="mail.debug">true</beans:prop>
+	    </beans:props>
+	    </beans:property>
+	</beans:bean>
+  		
 </beans:beans>
+
+
