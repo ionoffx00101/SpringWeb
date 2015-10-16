@@ -18,8 +18,8 @@ public class EmailController {
  
         EmailVO email = new EmailVO();
          
-        String receiver = "anes344@naver.com"; //Receiver.
-        String subject = "됨";
+        String receiver = "tehon0318@naver.com"; //Receiver.
+        String subject = "인증메일이 왔어요 ";
         String content = "?";
          
         email.setReceiver(receiver);
