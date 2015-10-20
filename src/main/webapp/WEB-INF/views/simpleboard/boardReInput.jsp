@@ -12,7 +12,9 @@ $(jqueryOk);
 function jqueryOk() {
 	$('button[name=submit]').on('click', function(evt){
 		  evt.preventDefault();
-       	  	
+		 if($('input[name=title]').val() == ''){
+			 $('input[name=title]').val($('input[name=title]').attr('placeholder'));
+		 }
         	  		  $.ajax({
         	  			type : "post",
         	  			url : "reinsert",
@@ -48,7 +50,7 @@ function jqueryOk() {
 <tr>
 
 <td>글제목 :</td>
-<td><input type="text" name="title" value="re:${board.title}"></td>
+<td><input type="text" name="title" placeholder="re:${board.title}"></td>
 </tr>
 <tr>
 <td>글쓴이 :</td>

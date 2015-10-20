@@ -43,7 +43,7 @@
 </script>
 </head>
 <body>
-	<h5>글목록</h5>
+	<a href="list?pnum=1"><h5>글목록</h5></a>
 	<select name="category">
 		<option>글제목</option>
 		<option>글쓴이</option>

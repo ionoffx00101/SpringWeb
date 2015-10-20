@@ -67,7 +67,7 @@ function jqueryOk() {
 					<td><button type="button" name="submit">수정하기</button></td>
 				</tr>
 				<tr>
-					<td colspan="2"><a href="list">글목록</a></td>
+					<td colspan="2"><a href="list?pnum=1">글목록</a></td>
 				</tr>
 			</table>
 		</form>
