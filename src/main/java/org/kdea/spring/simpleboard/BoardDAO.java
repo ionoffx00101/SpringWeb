@@ -13,4 +13,6 @@ public interface BoardDAO {
 	public List<BoardVO> searcha(String author);
 	public List<BoardVO> getPagelist(int pg);
 	public int getTotalRows();
+/*	public int getsearchTotalRows(String title);
+	public int getsearchTotalRows2(String author);*/
 }

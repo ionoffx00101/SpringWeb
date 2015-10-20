@@ -17,7 +17,7 @@ $(function() {
             var word = $('input[name=searchword]').val();
             cate = $('select[name=category]').val();
           if(word!=null){
-        	  location.href='search?word='+word+'&cate='+cate+'';
+        	  location.href='search?word='+word+'&cate='+cate+'&pnum='+1+'';
           }      
     });
  

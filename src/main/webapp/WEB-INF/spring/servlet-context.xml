@@ -16,14 +16,14 @@
 	<!-- Enables the Spring MVC @Controller programming model -->
 	<mvc:annotation-driven />
 
-	<context:component-scan base-package="org.kdea.spring.controller" />
+<!-- 	<context:component-scan base-package="org.kdea.spring.controller" />
 	<context:component-scan base-package="org.kdea.spring.service" />
 	<context:component-scan base-package="org.kdea.spring.websocket" />
 	<context:component-scan base-package="org.kdea.spring.springdb" />
 	<context:component-scan base-package="org.kdea.spring.eventcon" />
 	<context:component-scan base-package="org.kdea.spring.register" />
 	<context:component-scan base-package="org.kdea.upload" />
-	<context:component-scan base-package="org.kdea.mybatis" />
+	<context:component-scan base-package="org.kdea.mybatis" /> -->
 	<context:component-scan base-package="org.kdea.spring.simpleboard" />
 	
 

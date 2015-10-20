@@ -20,16 +20,19 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         delete from SIMPLEBOARD where BNUM=#{bnum}
     </delete>
     <select id="search" resultType="org.kdea.spring.simpleboard.BoardVO">
-    	 select * from SIMPLEBOARD where title like '%'||#{title}||'%' ORDER BY BNUM
+    	 select * from SIMPLEBOARD where title like '%'||#{title}||'%' ORDER BY BNUM DESC
     </select>
      <select id="searcha" resultType="org.kdea.spring.simpleboard.BoardVO">
-      select * from SIMPLEBOARD where author like '%'||#{author}||'%' ORDER BY BNUM
+      select * from SIMPLEBOARD where author like '%'||#{author}||'%' ORDER BY BNUM DESC
     </select>
     <select id="getPagelist" resultType="org.kdea.spring.simpleboard.BoardVO">
    		 <!--select * from SIMPLEBOARD;-->
-   		 select t2.* from (SELECT t1.*, TRUNC((ROWNUM-1)/5)+1 page FROM ( SELECT BNUM,LPAD(' ', (LEVEL-1)*4,'　') || DECODE(LEVEL,1,'','┕ ')||title as title,BCONTENTS,WDATE,author,bREF FROM SIMPLEBOARD START WITH BREF='0' CONNECT BY PRIOR BNUM=BREF order siblings by BNUM) t1) t2 where page=#{pg}
+   		 select t2.* from (SELECT t1.*, TRUNC((ROWNUM-1)/5)+1 page FROM ( SELECT BNUM,LPAD(' ', (LEVEL-1)*4,'　') || DECODE(LEVEL,1,'','┕ ')||title as title,BCONTENTS,WDATE,author,bREF FROM SIMPLEBOARD START WITH BREF='0' CONNECT BY PRIOR BNUM=BREF order siblings by BNUM DESC) t1) t2 where page=#{pg}
     </select>
     <select id="getTotalRows" resultType="java.lang.Integer">
-   		 select count(*) from SIMPLEBOARD
+   		 select count(*) from SIMPLEBOARD where title like '%'||#{title}||'%'
+    </select>
+    <select id="getTotalRows" resultType="java.lang.Integer">
+   		 select count(*) from SIMPLEBOARD where author like '%'||#{author}||'%'
     </select>
 </mapper>
