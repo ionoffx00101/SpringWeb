@@ -30,11 +30,13 @@ public class BoardController {
 		List<BoardVO> list = svc.svclist(pnum);
 		NaviVO navi = svc.getNaviVO(pnum);
 		navi.setLinknum(navi.getLinks().length);
-		System.out.println(navi.getLinks().length+"컨트롤러");
-		System.out.println(navi.isRightMore()+"오른쪽 트롤러");
+/*		System.out.println(navi.getLinks().length+"컨트롤러");
+		System.out.println(navi.isRightMore()+"오른쪽 트롤러");*/
 		model.addAttribute("list", list);
 		model.addAttribute("navi", navi);
+		model.addAttribute("search", false);
 		return "simpleboard/boardList";
+		
 		
 	}
 
@@ -55,6 +57,24 @@ public class BoardController {
 	@RequestMapping(value="insert", method=RequestMethod.POST)
 	@ResponseBody
 	public String Insert(BoardVO board,Model model,HttpServletRequest request) {
+		
+
+	boolean check = svc.svcinsert(board);
+		return "{\"check\":"+check+"}";
+	}
+	
+	@RequestMapping(value="reinput", method=RequestMethod.GET)
+	public String reInputForm(BoardVO board,Model model,@RequestParam("refnum") int ref,@RequestParam("reftitle") String title) {
+		board.setBref(ref);
+		board.setTitle(title);
+		model.addAttribute("board", board);
+		model.addAttribute("ref", ref);
+		return "simpleboard/boardReInput";
+	}
+	
+	@RequestMapping(value="reinsert", method=RequestMethod.POST)
+	@ResponseBody
+	public String reInsert(BoardVO board,Model model,HttpServletRequest request) {
 		
 
 	boolean check = svc.svcinsert(board);
@@ -90,14 +110,20 @@ public class BoardController {
 	}
 	
 	@RequestMapping(value="search", method=RequestMethod.GET)
-	public String search(Model model, BoardVO vo,HttpServletRequest request,@RequestParam("word") String word,@RequestParam("cate") String cate) {
-		
+	public String search(Model model, BoardVO vo,HttpServletRequest request,@RequestParam("word") String word,@RequestParam("cate") String cate,@RequestParam("pnum") int pnum) {
 
 		
-		List<BoardVO> list = svc.svcsearch(word,cate);
+		List<BoardVO> list = svc.svcsearch(word,cate,pnum);
+
+		NaviVO navi = svc.getsearchNaviVO(pnum,cate,word);
+
+		navi.setLinknum(navi.getLinks().length);
 		
 		model.addAttribute("list",list);
-		
+		model.addAttribute("navi", navi);
+		model.addAttribute("word", word);
+		model.addAttribute("cate", cate);
+		model.addAttribute("search", true);
     	return "simpleboard/boardList"; 
 	}
 

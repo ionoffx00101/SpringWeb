@@ -51,7 +51,7 @@ function jqueryOk() {
 글내용 : ${Info.bcontents} <br>
 
 <p>
-<a href="retext?refnum=${Info.bnum}">답글쓰기</a>
+<a href="reinput?refnum=${Info.bnum}&reftitle=${Info.title}">답글쓰기</a>
 <a href="edit?bnum=${Info.bnum}">수정</a>
 <button type="button" name="delete"  data-idx="${Info.bnum}">삭제</button>
 </body>
