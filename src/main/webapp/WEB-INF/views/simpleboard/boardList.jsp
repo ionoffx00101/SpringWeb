@@ -17,10 +17,22 @@ $(function() {
             var word = $('input[name=searchword]').val();
             cate = $('select[name=category]').val();
           if(word!=null){
-        	  location.href='search?word='+word+'&cate='+cate+'&pnum='+1+'';
+        	  location.href='search?word='+word+'&cate='+cate+'';
           }      
     });
- 
+	$('input[name=searchword]').on('keydown', function(evt){
+		
+        var word = $('input[name=searchword]').val();
+        cate = $('select[name=category]').val();
+        
+        if(evt.keyCode==13){
+        	 if(word!=null){
+           	  location.href='search?word='+word+'&cate='+cate+'';
+             }     
+        }
+        
+      
+	});
 });
 
 </script>

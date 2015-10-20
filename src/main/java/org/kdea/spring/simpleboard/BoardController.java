@@ -90,16 +90,14 @@ public class BoardController {
 	}
 	
 	@RequestMapping(value="search", method=RequestMethod.GET)
-	public String search(Model model, BoardVO vo,HttpServletRequest request,@RequestParam("word") String word,@RequestParam int pnum,@RequestParam("cate") String cate) {
-		/*@RequestParam("pnum") int pnum*/
+	public String search(Model model, BoardVO vo,HttpServletRequest request,@RequestParam("word") String word,@RequestParam("cate") String cate) {
+		
 
 		
 		List<BoardVO> list = svc.svcsearch(word,cate);
 		
 		model.addAttribute("list",list);
-		NaviVO navi = svc.getNaviVO(pnum);
-		//NaviVO navi = svc.getsearchNaviVO(pnum,cate,word);// 1이라고 때려박음
-		model.addAttribute("navi", navi);
+		
     	return "simpleboard/boardList"; 
 	}
 

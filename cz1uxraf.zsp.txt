@@ -1,0 +1,145 @@
+﻿Revert "와.."
+
+This reverts commit 491132dbdae24ac810416e9490a03b7cffb3e7b8.
+
+Conflicts:
+	src/main/java/org/kdea/spring/simpleboard/BoardController.java
+	src/main/java/org/kdea/spring/simpleboard/BoardDAO.java
+	src/main/java/org/kdea/spring/simpleboard/BoardMapper.xml
+	src/main/java/org/kdea/spring/simpleboard/BoardService.java
+	src/main/webapp/WEB-INF/spring/servlet-context.xml
+	src/main/webapp/WEB-INF/views/simpleboard/boardList.jsp
+	target/classes/org/kdea/spring/simpleboard/BoardController.class
+	target/classes/org/kdea/spring/simpleboard/BoardMapper.xml
+	target/classes/org/kdea/spring/simpleboard/BoardService.class
+
+# Please enter the commit message for your changes. Lines starting
+# with '#' will be ignored, and an empty message aborts the commit.
+# On branch master
+# Your branch is up-to-date with 'origin/master'.
+#
+# You are currently reverting commit 491132d.
+#
+# Changes to be committed:
+#	modified:   src/main/java/org/kdea/spring/simpleboard/BoardController.java
+#	modified:   src/main/java/org/kdea/spring/simpleboard/BoardDAO.java
+#	modified:   src/main/java/org/kdea/spring/simpleboard/BoardMapper.xml
+#	modified:   src/main/java/org/kdea/spring/simpleboard/BoardService.java
+#	modified:   src/main/webapp/WEB-INF/spring/servlet-context.xml
+#	modified:   src/main/webapp/WEB-INF/views/simpleboard/boardList.jsp
+#	deleted:    target/classes/org/kdea/mybatis/EmpDAO.class
+#	deleted:    target/classes/org/kdea/mybatis/EmpMBController.class
+#	deleted:    target/classes/org/kdea/mybatis/EmpMapper.xml
+#	deleted:    target/classes/org/kdea/mybatis/EmpVO.class
+#	modified:   target/classes/org/kdea/spring/controller/EmpController.class
+#	modified:   target/classes/org/kdea/spring/controller/EmpVO.class
+#	modified:   target/classes/org/kdea/spring/controller/GuguController.class
+#	modified:   target/classes/org/kdea/spring/controller/HelloController.class
+#	modified:   target/classes/org/kdea/spring/controller/LoginCommand.class
+#	modified:   target/classes/org/kdea/spring/controller/LoginController.class
+#	modified:   target/classes/org/kdea/spring/controller/TilesController.class
+#	modified:   target/classes/org/kdea/spring/controller/WebsocketController.class
+#	modified:   target/classes/org/kdea/spring/eventcon/Event.class
+#	modified:   target/classes/org/kdea/spring/eventcon/EventController.class
+#	modified:   target/classes/org/kdea/spring/eventcon/EventDAO.class
+#	modified:   target/classes/org/kdea/spring/eventcon/EventExtractor.class
+#	modified:   target/classes/org/kdea/spring/eventcon/EventRowMapper.class
+#	modified:   target/classes/org/kdea/spring/eventcon/EventService.class
+#	modified:   target/classes/org/kdea/spring/register/EmailVO.class
+#	modified:   target/classes/org/kdea/spring/register/MemberVO.class
+#	modified:   target/classes/org/kdea/spring/register/RegisterController.class
+#	modified:   target/classes/org/kdea/spring/register/RegisterDAO.class
+#	modified:   target/classes/org/kdea/spring/register/RegisterExtractor.class
+#	modified:   target/classes/org/kdea/spring/register/RegisterRowMapper.class
+#	modified:   target/classes/org/kdea/spring/register/RegisterService.class
+#	modified:   target/classes/org/kdea/spring/service/AbstractDAO.class
+#	modified:   target/classes/org/kdea/spring/service/EmpDAO.class
+#	modified:   target/classes/org/kdea/spring/service/EmpService.class
+#	modified:   target/classes/org/kdea/spring/service/GuguService.class
+#	modified:   target/classes/org/kdea/spring/service/LoginService.class
+#	modified:   target/classes/org/kdea/spring/service/MyService.class
+#	modified:   target/classes/org/kdea/spring/simpleboard/BoardController.class
+#	deleted:    target/classes/org/kdea/spring/simpleboard/BoardDAO.class
+#	modified:   target/classes/org/kdea/spring/simpleboard/BoardMapper.xml
+#	modified:   target/classes/org/kdea/spring/simpleboard/BoardService.class
+#	deleted:    target/classes/org/kdea/spring/simpleboard/BoardVO.class
+#	deleted:    target/classes/org/kdea/spring/simpleboard/NaviVO.class
+#	modified:   target/classes/org/kdea/spring/springdb/Emp.class
+#	modified:   target/classes/org/kdea/spring/springdb/EmpExtractor.class
+#	modified:   target/classes/org/kdea/spring/springdb/EmpRowMapper.class
+#	modified:   target/classes/org/kdea/spring/springdb/SpringdbController.class
+#	modified:   target/classes/org/kdea/spring/springdb/SpringdbDAO.class
+#	modified:   target/classes/org/kdea/spring/springdb/SpringdbService.class
+#	modified:   target/classes/org/kdea/spring/websocket/HandshakeInterceptor.class
+#	modified:   target/classes/org/kdea/spring/websocket/HelloWebSocketHandler.class
+#	modified:   target/classes/org/kdea/spring/websocket/SimpleWebSocketHandler.class
+#	modified:   target/classes/org/kdea/spring/websocket/WebsocketConfig.class
+#	modified:   target/classes/org/kdea/upload/FileValidator.class
+#	modified:   target/classes/org/kdea/upload/UploadController.class
+#	modified:   target/classes/org/kdea/upload/UploadDAO.class
+#	modified:   target/classes/org/kdea/upload/UploadExtractor.class
+#	modified:   target/classes/org/kdea/upload/UploadRowMapper.class
+#	modified:   target/classes/org/kdea/upload/UploadService.class
+#	modified:   target/classes/org/kdea/upload/UploadVO.class
+#	modified:   target/classes/org/kdea/upload/UploadedFile.class
+#	modified:   target/m2e-wtp/web-resources/META-INF/maven/org.kdea/SpringWeb/pom.properties
+#	modified:   target/m2e-wtp/web-resources/META-INF/maven/org.kdea/SpringWeb/pom.xml
+#
+# Changes not staged for commit:
+#	modified:   target/classes/org/kdea/spring/controller/EmpController.class
+#	modified:   target/classes/org/kdea/spring/controller/EmpVO.class
+#	modified:   target/classes/org/kdea/spring/controller/GuguController.class
+#	modified:   target/classes/org/kdea/spring/controller/HelloController.class
+#	modified:   target/classes/org/kdea/spring/controller/LoginCommand.class
+#	modified:   target/classes/org/kdea/spring/controller/LoginController.class
+#	modified:   target/classes/org/kdea/spring/controller/TilesController.class
+#	modified:   target/classes/org/kdea/spring/controller/WebsocketController.class
+#	modified:   target/classes/org/kdea/spring/eventcon/Event.class
+#	modified:   target/classes/org/kdea/spring/eventcon/EventController.class
+#	modified:   target/classes/org/kdea/spring/eventcon/EventDAO.class
+#	modified:   target/classes/org/kdea/spring/eventcon/EventExtractor.class
+#	modified:   target/classes/org/kdea/spring/eventcon/EventRowMapper.class
+#	modified:   target/classes/org/kdea/spring/eventcon/EventService.class
+#	modified:   target/classes/org/kdea/spring/register/EmailVO.class
+#	modified:   target/classes/org/kdea/spring/register/MemberVO.class
+#	modified:   target/classes/org/kdea/spring/register/RegisterController.class
+#	modified:   target/classes/org/kdea/spring/register/RegisterDAO.class
+#	modified:   target/classes/org/kdea/spring/register/RegisterExtractor.class
+#	modified:   target/classes/org/kdea/spring/register/RegisterRowMapper.class
+#	modified:   target/classes/org/kdea/spring/register/RegisterService.class
+#	modified:   target/classes/org/kdea/spring/service/AbstractDAO.class
+#	modified:   target/classes/org/kdea/spring/service/EmpDAO.class
+#	modified:   target/classes/org/kdea/spring/service/EmpService.class
+#	modified:   target/classes/org/kdea/spring/service/GuguService.class
+#	modified:   target/classes/org/kdea/spring/service/LoginService.class
+#	modified:   target/classes/org/kdea/spring/service/MyService.class
+#	modified:   target/classes/org/kdea/spring/springdb/Emp.class
+#	modified:   target/classes/org/kdea/spring/springdb/EmpExtractor.class
+#	modified:   target/classes/org/kdea/spring/springdb/EmpRowMapper.class
+#	modified:   target/classes/org/kdea/spring/springdb/SpringdbController.class
+#	modified:   target/classes/org/kdea/spring/springdb/SpringdbDAO.class
+#	modified:   target/classes/org/kdea/spring/springdb/SpringdbService.class
+#	modified:   target/classes/org/kdea/spring/websocket/HandshakeInterceptor.class
+#	modified:   target/classes/org/kdea/spring/websocket/HelloWebSocketHandler.class
+#	modified:   target/classes/org/kdea/spring/websocket/SimpleWebSocketHandler.class
+#	modified:   target/classes/org/kdea/spring/websocket/WebsocketConfig.class
+#	modified:   target/classes/org/kdea/upload/FileValidator.class
+#	modified:   target/classes/org/kdea/upload/UploadController.class
+#	modified:   target/classes/org/kdea/upload/UploadDAO.class
+#	modified:   target/classes/org/kdea/upload/UploadExtractor.class
+#	modified:   target/classes/org/kdea/upload/UploadRowMapper.class
+#	modified:   target/classes/org/kdea/upload/UploadService.class
+#	modified:   target/classes/org/kdea/upload/UploadVO.class
+#	modified:   target/classes/org/kdea/upload/UploadedFile.class
+#	modified:   target/m2e-wtp/web-resources/META-INF/maven/org.kdea/SpringWeb/pom.properties
+#	modified:   target/m2e-wtp/web-resources/META-INF/maven/org.kdea/SpringWeb/pom.xml
+#
+# Untracked files:
+#	target/classes/org/kdea/spring/simpleboard/BoardController.class.orig
+#	target/classes/org/kdea/spring/simpleboard/BoardDAO.class
+#	target/classes/org/kdea/spring/simpleboard/BoardMapper.xml.orig
+#	target/classes/org/kdea/spring/simpleboard/BoardService.class.orig
+#	target/classes/org/kdea/spring/simpleboard/BoardVO.class
+#	target/classes/org/kdea/spring/simpleboard/NaviVO.class
+#
+
